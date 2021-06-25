@@ -7,7 +7,7 @@ OUTPUT_FORMAT("elf32-iamcu", "elf32-iamcu",
 	      "elf32-iamcu")
 OUTPUT_ARCH(iamcu)
 ENTRY(_start)
-SEARCH_DIR("=/buildbot/src/android/binutils/out/binutils/linux/x86_64/install/binutils-x86_64-linux/x86_64-linux-android/lib");
+SEARCH_DIR("=/tmp/977f3d1544adcc5c19c0f1f249bff13c/x86_64-linux-android/lib");
 SECTIONS
 {
   /* Read-only sections, merged into text segment: */
