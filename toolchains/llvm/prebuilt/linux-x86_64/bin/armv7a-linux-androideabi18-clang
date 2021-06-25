@@ -1,7 +1,3 @@
-#!/bin/bash
-if [ "$1" != "-cc1" ]; then
-    `dirname $0`/clang --target=armv7a-linux-androideabi18 "$@"
-else
-    # Target is already an argument.
-    `dirname $0`/clang "$@"
-fi
+version https://git-lfs.github.com/spec/v1
+oid sha256:2036ac34f9658d4d14755a251a0710482ec5c7b8435a20fb6a0c90f23eae8911
+size 177
