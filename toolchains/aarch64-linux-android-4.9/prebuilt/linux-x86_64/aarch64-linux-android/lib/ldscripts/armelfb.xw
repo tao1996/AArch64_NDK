@@ -7,7 +7,7 @@ OUTPUT_FORMAT("elf32-bigarm", "elf32-bigarm",
 	      "elf32-littlearm")
 OUTPUT_ARCH(arm)
 ENTRY(_start)
-SEARCH_DIR("=/buildbot/src/android/binutils/out/binutils/linux/arm64/install/binutils-arm64-linux/aarch64-linux-android/lib");
+SEARCH_DIR("=/tmp/df36e3b8c255d2a522e9295afdc2ca55/aarch64-linux-android/lib");
 SECTIONS
 {
   /* Read-only sections, merged into text segment: */
