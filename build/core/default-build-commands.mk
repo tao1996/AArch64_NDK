@@ -78,11 +78,17 @@ $(PRIVATE_CXX) \
     -o $(call host-path,$(LOCAL_BUILT_MODULE))
 endef
 
+define cmd-build-static-library-ld
+$(PRIVATE_LD) -r $(PRIVATE_AR_OBJECTS) -o $(call host-path,$(TARGET_OUT)/$(LOCAL_MODULE).o)
+endef
+
 define cmd-build-static-library
-$(PRIVATE_AR) $(call host-path,$(LOCAL_BUILT_MODULE)) $(PRIVATE_AR_OBJECTS)
+$(PRIVATE_AR) $(call host-path,$(LOCAL_BUILT_MODULE)) $(call host-path,$(TARGET_OUT)/$(LOCAL_MODULE).o)
 endef
 
 cmd-strip = $(PRIVATE_STRIP) $(PRIVATE_STRIP_MODE) $(call host-path,$1)
+
+cmd-objcopy = $(PRIVATE_OBJCOPY) $(PRIVATE_OBJCOPY_MODE) $(call host-path,$1)
 
 # arm32 currently uses a linker script in place of libgcc to ensure that
 # libunwind is linked in the correct order. --exclude-libs does not propagate to
@@ -168,6 +174,8 @@ TARGET_AR = $(TOOLCHAIN_PREFIX)ar
 TARGET_ARFLAGS := crsD
 
 TARGET_STRIP    = $(TOOLCHAIN_PREFIX)strip
+
+TARGET_OBJCOPY = $(LLVM_TOOLCHAIN_PREFIX)llvm-objcopy$(HOST_EXEEXT)
 
 TARGET_OBJ_EXTENSION := .o
 TARGET_LIB_EXTENSION := .a
