@@ -1,4 +1,4 @@
-This is make.info, produced by makeinfo version 5.2 from make.texi.
+This is make.info, produced by makeinfo version 6.5 from make.texi.
 
 This file documents the GNU 'make' utility, which determines
 automatically which pieces of a large program need to be recompiled, and
@@ -2525,8 +2525,8 @@ Certain names have special meanings if they appear as targets.
      '.SILENT' is supported only for historical compatibility.  We
      recommend you use the more selective ways to silence specific
      recipes.  *Note Recipe Echoing: Echoing.  If you want to silence
-     all recipes for a particular run of 'make', use the '-s' or '--silent'
-     option (*note Options Summary::).
+     all recipes for a particular run of 'make', use the '-s' or
+     '--silent' option (*note Options Summary::).
 
 '.EXPORT_ALL_VARIABLES'
 
@@ -3757,9 +3757,9 @@ the '+' token to get these special effects.
 option marks targets as up to date without actually running any recipes;
 see *note Instead of Execution::.)  Following the usual definition of
 '-t', a 'make -t' command in the example would create a file named
-'subsystem' and do nothing else.  What you really want it to do is run 'cd subdir &&
-make -t'; but that would require executing the recipe, and '-t' says not
-to execute recipes.
+'subsystem' and do nothing else.  What you really want it to do is run
+'cd subdir && make -t'; but that would require executing the recipe, and
+'-t' says not to execute recipes.
 
    The special feature makes this do what you want: whenever a recipe
 line of a rule contains the variable 'MAKE', the flags '-t', '-n' and
@@ -4029,11 +4029,11 @@ File: make.info,  Node: -w Option,  Prev: Options/Recursion,  Up: Recursion
 5.7.4 The '--print-directory' Option
 ------------------------------------
 
-If you use several levels of recursive 'make' invocations, the '-w' or '--print-directory'
-option can make the output a lot easier to understand by showing each
-directory as 'make' starts processing it and as 'make' finishes
-processing it.  For example, if 'make -w' is run in the directory
-'/u/gnu/make', 'make' will print a line of the form:
+If you use several levels of recursive 'make' invocations, the '-w' or
+'--print-directory' option can make the output a lot easier to
+understand by showing each directory as 'make' starts processing it and
+as 'make' finishes processing it.  For example, if 'make -w' is run in
+the directory '/u/gnu/make', 'make' will print a line of the form:
 
      make: Entering directory `/u/gnu/make'.
 
@@ -4791,12 +4791,12 @@ references.  Take this common example:
 The first line defines the 'CFLAGS' variable with a reference to another
 variable, 'includes'.  ('CFLAGS' is used by the rules for C compilation;
 *note Catalogue of Built-In Rules: Catalogue of Rules.)  Using '=' for
-the definition makes 'CFLAGS' a recursively-expanded variable, meaning '$(includes) -O'
-is _not_ expanded when 'make' processes the definition of 'CFLAGS'.
-Thus, 'includes' need not be defined yet for its value to take effect.
-It only has to be defined before any reference to 'CFLAGS'.  If we tried
-to append to the value of 'CFLAGS' without using '+=', we might do it
-like this:
+the definition makes 'CFLAGS' a recursively-expanded variable, meaning
+'$(includes) -O' is _not_ expanded when 'make' processes the definition
+of 'CFLAGS'.  Thus, 'includes' need not be defined yet for its value to
+take effect.  It only has to be defined before any reference to
+'CFLAGS'.  If we tried to append to the value of 'CFLAGS' without using
+'+=', we might do it like this:
 
      CFLAGS := $(CFLAGS) -pg # enable profiling
 
@@ -6765,8 +6765,8 @@ containing several programs, with a makefile that starts like this:
      .PHONY: all
      all: size nm ld ar as
 
-   If you are working on the program 'size', you might want to say 'make size'
-so that only the files of that program are recompiled.
+   If you are working on the program 'size', you might want to say
+'make size' so that only the files of that program are recompiled.
 
    Another use of specifying a goal is to make files that are not
 normally made.  For example, there may be a file of debugging output, or

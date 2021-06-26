@@ -31,7 +31,7 @@ installed_prefix ()
     echo $RESULT
 }
 
-prefix_build="/buildbot/src/android/ndk-release-r21/out/linux/python/linux-x86_64/install/host-tools"
+prefix_build="/root/android-ndk-r21e/prebuilt/linux-x86_64"
 prefix_real=$(installed_prefix "$0")
 
 exec_prefix_build="${prefix}"
@@ -50,7 +50,7 @@ libdir=$(echo "${exec_prefix}/lib" | sed "s#^$prefix_build#$prefix_real#")
 prefix="$prefix_real"
 exec_prefix="$exec_prefix_real"
 
-CFLAGS="-O2 -Os -fomit-frame-pointer -s"
+CFLAGS="-g -O2"
 VERSION="2.7"
 LIBM="-lm"
 LIBC=""
@@ -64,7 +64,7 @@ LIBS="-lpython${VERSION}${ABIFLAGS} -lpthread -ldl  -lutil $SYSLIBS"
 BASECFLAGS=" -fno-strict-aliasing"
 LDLIBRARY="libpython${VERSION}.a"
 LINKFORSHARED="-Xlinker -export-dynamic"
-OPT="-DNDEBUG -fwrapv -O3 -Wall -Wstrict-prototypes"
+OPT="-DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes"
 PY_ENABLE_SHARED="0"
 DLLLIBRARY=""
 LIBDEST=${prefix}/lib/python${VERSION}

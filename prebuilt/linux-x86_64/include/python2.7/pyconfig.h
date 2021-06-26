@@ -267,7 +267,7 @@
 
 /* Define if we can use gcc inline assembler to get and set x87 control word
    */
-#define HAVE_GCC_ASM_FOR_X87 1
+/* #undef HAVE_GCC_ASM_FOR_X87 */
 
 /* Define if you have the getaddrinfo function. */
 #define HAVE_GETADDRINFO 1
@@ -426,7 +426,7 @@
 #define HAVE_LIBINTL_H 1
 
 /* Define if you have the readline library (-lreadline). */
-/* #undef HAVE_LIBREADLINE */
+#define HAVE_LIBREADLINE 1
 
 /* Define to 1 if you have the `resolv' library (-lresolv). */
 /* #undef HAVE_LIBRESOLV */
@@ -543,25 +543,25 @@
 #define HAVE_REALPATH 1
 
 /* Define if you have readline 2.1 */
-/* #undef HAVE_RL_CALLBACK */
+#define HAVE_RL_CALLBACK 1
 
 /* Define if you can turn off readline's signal handling. */
-/* #undef HAVE_RL_CATCH_SIGNAL */
+#define HAVE_RL_CATCH_SIGNAL 1
 
 /* Define if you have readline 2.2 */
-/* #undef HAVE_RL_COMPLETION_APPEND_CHARACTER */
+#define HAVE_RL_COMPLETION_APPEND_CHARACTER 1
 
 /* Define if you have readline 4.0 */
-/* #undef HAVE_RL_COMPLETION_DISPLAY_MATCHES_HOOK */
+#define HAVE_RL_COMPLETION_DISPLAY_MATCHES_HOOK 1
 
 /* Define if you have readline 4.2 */
-/* #undef HAVE_RL_COMPLETION_MATCHES */
+#define HAVE_RL_COMPLETION_MATCHES 1
 
 /* Define if you have rl_completion_suppress_append */
-/* #undef HAVE_RL_COMPLETION_SUPPRESS_APPEND */
+#define HAVE_RL_COMPLETION_SUPPRESS_APPEND 1
 
 /* Define if you have readline 4.0 */
-/* #undef HAVE_RL_PRE_INPUT_HOOK */
+#define HAVE_RL_PRE_INPUT_HOOK 1
 
 /* Define to 1 if you have the `round' function. */
 #define HAVE_ROUND 1
@@ -691,7 +691,7 @@
 #define HAVE_STRING_H 1
 
 /* Define to 1 if you have the <stropts.h> header file. */
-#define HAVE_STROPTS_H 1
+/* #undef HAVE_STROPTS_H */
 
 /* Define to 1 if `st_birthtime' is a member of `struct stat'. */
 /* #undef HAVE_STRUCT_STAT_ST_BIRTHTIME */
@@ -926,7 +926,7 @@
 
 /* Define to 1 if `major', `minor', and `makedev' are declared in
    <sysmacros.h>. */
-/* #undef MAJOR_IN_SYSMACROS */
+#define MAJOR_IN_SYSMACROS 1
 
 /* Define if mvwdelch in curses.h is an expression. */
 #define MVWDELCH_IS_EXPRESSION 1
@@ -1090,7 +1090,7 @@
 /* #undef USE_TOOLBOX_OBJECT_GLUE */
 
 /* Define if a va_list is an array of some kind */
-#define VA_LIST_IS_ARRAY 1
+/* #undef VA_LIST_IS_ARRAY */
 
 /* Define if you want SIGFPE handled (see Include/pyfpe.h). */
 /* #undef WANT_SIGFPE_HANDLER */

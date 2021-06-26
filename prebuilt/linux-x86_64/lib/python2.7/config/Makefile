@@ -26,21 +26,21 @@ MODLIBS=        $(LOCALMODLIBS) $(BASEMODLIBS)
 
 # === Variables set by configure
 VERSION=	2.7
-srcdir=		/buildbot/src/android/ndk-release-r21/toolchain/python/Python-2.7.5
-VPATH=		/buildbot/src/android/ndk-release-r21/toolchain/python/Python-2.7.5
-MSYSVPATH=	/buildbot/src/android/ndk-release-r21/toolchain/python/Python-2.7.5
-abs_srcdir=	/buildbot/src/android/ndk-release-r21/toolchain/python/Python-2.7.5
-abs_builddir=	/buildbot/src/android/ndk-release-r21/out/linux/python/build-python-linux-x86_64-2.7.5
-build=		x86_64-pc-linux-gnu
-host=		x86_64-pc-linux-gnu
+srcdir=		.
 
-CC=		x86_64-linux-gnu-gcc -pthread
-CXX=		x86_64-linux-gnu-g++ -pthread
+MSYSVPATH=	.
+abs_srcdir=	/root/llvm/toolchain/python/Python-2.7.5
+abs_builddir=	/root/llvm/toolchain/python/Python-2.7.5
+build=		aarch64-unknown-linux-gnu
+host=		aarch64-unknown-linux-gnu
+
+CC=		gcc-4.9 -pthread
+CXX=		c++ -pthread
 MAINCC=		$(CC)
 LINKCC=		$(PURIFY) $(MAINCC)
-AR=		x86_64-linux-gnu-ar
-RANLIB=		x86_64-linux-gnu-ranlib
-SVNVERSION=	echo Unversioned directory
+AR=		ar
+RANLIB=		ranlib
+SVNVERSION=	svnversion $(srcdir)
 HGVERSION=	
 HGTAG=		
 HGBRANCH=	
@@ -63,14 +63,14 @@ INSTALL_DATA=	${INSTALL} -m 644
 # Also, making them read-only seems to be a good idea...
 INSTALL_SHARED= ${INSTALL} -m 555
 
-MKDIR_P=	/bin/mkdir -p
+MKDIR_P=	/usr/bin/mkdir -p
 
 MAKESETUP=      $(srcdir)/Modules/makesetup
 
 # Compiler options
-OPT=		-DNDEBUG -fwrapv -O3 -Wall -Wstrict-prototypes
+OPT=		-DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes
 BASECFLAGS=	 -fno-strict-aliasing
-CFLAGS=		$(BASECFLAGS) -O2 -Os -fomit-frame-pointer -s $(OPT) $(EXTRA_CFLAGS)
+CFLAGS=		$(BASECFLAGS) -g -O2 $(OPT) $(EXTRA_CFLAGS)
 # Both CPPFLAGS and LDFLAGS need to contain the shell's value for setup.py to
 # be able to build extension modules using the directories specified in the
 # environment variables
@@ -92,10 +92,10 @@ DELIM=		:
 MACHDEP=	linux2
 
 # Multiarch directory (may be empty)
-MULTIARCH=	x86_64-linux-gnu
+MULTIARCH=	aarch64-linux-gnu
 
 # Install prefix for architecture-independent files
-prefix=		/buildbot/src/android/ndk-release-r21/out/linux/python/linux-x86_64/install/host-tools
+prefix=		/root/android-ndk-r21e/prebuilt/linux-x86_64
 
 # Install prefix for architecture-dependent files
 exec_prefix=	${prefix}
@@ -120,9 +120,9 @@ LIBP=		$(LIBDIR)/python$(VERSION)
 
 # Symbols used for using shared libraries
 SO=		.so
-LDSHARED=	x86_64-linux-gnu-gcc -shared  $(LDFLAGS)
-BLDSHARED=	x86_64-linux-gnu-gcc -shared  $(LDFLAGS)
-LDCXXSHARED=	x86_64-linux-gnu-gcc -shared 
+LDSHARED=	$(CC) -shared $(LDFLAGS)
+BLDSHARED=	$(CC) -shared $(LDFLAGS)
+LDCXXSHARED=	$(CXX) -shared
 DESTSHARED=	$(BINLIBDEST)/lib-dynload
 
 # Executable suffix (.exe on Windows and Mac OS X)
@@ -154,7 +154,7 @@ EXEMODE=	755
 FILEMODE=	644
 
 # configure script arguments
-CONFIG_ARGS=	 '--prefix=/buildbot/src/android/ndk-release-r21/out/linux/python/linux-x86_64/install/host-tools' '--build=x86_64-linux-gnu' '--host=x86_64-linux-gnu' '--with-build-sysroot' '--disable-ipv6' 'build_alias=x86_64-linux-gnu' 'host_alias=x86_64-linux-gnu' 'CC=x86_64-linux-gnu-gcc' 'CFLAGS=-O2 -Os -fomit-frame-pointer -s' 'LDFLAGS='
+CONFIG_ARGS=	 '--prefix=/root/android-ndk-r21e/prebuilt/linux-x86_64' '--disable-ipv6' 'CC=gcc-4.9'
 
 
 # Subdirectories with code
@@ -197,7 +197,7 @@ BUILDPYTHON=	python$(BUILDEXE)
 
 PYTHON_FOR_BUILD=./$(BUILDPYTHON) -E
 _PYTHON_HOST_PLATFORM=
-HOST_GNU_TYPE=  x86_64-pc-linux-gnu
+HOST_GNU_TYPE=  aarch64-unknown-linux-gnu
 
 # The task to run while instrument when building the profile-opt target
 PROFILE_TASK=	$(srcdir)/Tools/pybench/pybench.py -n 2 --with-gc --with-syscheck
