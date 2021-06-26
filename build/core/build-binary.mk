@@ -495,8 +495,8 @@ CLEAN_OBJS_DIRS     += $(LOCAL_OBJS_DIR)
 # Handle the static and shared libraries this module depends on
 #
 
-linker_ldflags :=
-using_lld := false
+linker_ldflags := -fuse-ld=lld
+using_lld := true
 ifeq ($(APP_LD),lld)
     linker_ldflags := -fuse-ld=lld
     using_lld := true
@@ -505,14 +505,14 @@ endif
 combined_ldflags := $(TARGET_LDFLAGS) $(NDK_APP_LDFLAGS) $(LOCAL_LDFLAGS)
 ndk_fuse_ld_flags := $(filter -fuse-ld=%,$(combined_ldflags))
 ndk_used_linker := $(lastword $(ndk_fuse_ld_flags))
-ifeq ($(ndk_used_linker),-fuse-ld=lld)
+
+# filter the lld flags
+ifneq ($(filter -fuse-ld=lld ,$(ndk_used_linker)),)
     using_lld := true
 else
     # In case the user has set APP_LD=lld but also disabled it for a specific
     # module.
-    ifneq ($(ndk_used_linker),)
-        using_lld := false
-    endif
+    using_lld := false
 endif
 
 # https://github.com/android/ndk/issues/885
