@@ -1,0 +1,32 @@
+name: CMake_NDK
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3          
+
+      - name: Build Time
+        run: 
+           cd ..
+           
+           tar cvpzf ndk.tar.gz AArch64_NDK
+
+
+      - name: Upload
+        uses: ncipollo/release-action@v1.8.6
+        with:
+          artifacts: ${{ github.workspace }}/../ndk.tar.gz
+          name: "Android ndk arm64-v8a"
+          tag: "${{ env.BUILD_TIME }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
